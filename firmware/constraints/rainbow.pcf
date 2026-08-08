@@ -1,0 +1,7 @@
+# Pin constraints for the FPGA_Board (ICE40UP5K-SG48, 12 MHz reference)
+# Package pin numbers confirmed from the KiCad netlist (2026-08-08).
+
+set_io clk_12m 20    # IOB_25b_G3  - 12 MHz clock (via 74AUC2G240 buffer)
+set_io rgb_r  39     # RGB0        - red   cathode (open-drain, active low)
+set_io rgb_g  40     # RGB1        - green cathode (open-drain, active low)
+set_io rgb_b  41     # RGB2        - blue  cathode (open-drain, active low)
