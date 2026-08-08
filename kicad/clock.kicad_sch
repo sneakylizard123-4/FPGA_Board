@@ -1183,53 +1183,27 @@
 			)
 		)
 	)
-	(global_label "12MHz_OUT"
+	(hierarchical_label "CLK_12M_OUT"
 		(shape input)
 		(at 93.98 72.39 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left)
 		)
-		(uuid "8001fc31-d393-4cf5-822d-a4b10f485f19")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 107.7904 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
+		(uuid "1fb847de-8491-4d65-b09b-145027d27bd4")
 	)
-	(global_label "IOB_25b_G3"
+	(hierarchical_label "IOB_25b_G3"
 		(shape input)
 		(at 100.33 49.53 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left)
 		)
-		(uuid "e72cd48f-3ba6-4e06-8f0c-7a0a13e022d5")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 114.5032 49.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
+		(uuid "881cd95d-1e2e-4d64-84fd-80d21e3aee89")
 	)
 	(hierarchical_label "3.3V"
 		(shape input)
@@ -1254,7 +1228,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0122044f-ecfe-4f3d-8eca-341a66cd88ca")
-		(property "Reference" "R21"
+		(property "Reference" "R14"
 			(at 96.52 43.18 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1274,7 +1248,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 96.52 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -1316,7 +1290,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/b28031e3-dbc0-406e-8faf-efb7f86de153"
-					(reference "R21")
+					(reference "R14")
 					(unit 1)
 				)
 			)
@@ -1334,7 +1308,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0ea99e8e-2f80-40bf-84f4-72deb597d1ee")
-		(property "Reference" "U8"
+		(property "Reference" "U5"
 			(at 78.74 81.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1354,7 +1328,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:VSSOP-8_3x3mm_P0.65mm"
 			(at 80.01 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -1414,7 +1388,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/b28031e3-dbc0-406e-8faf-efb7f86de153"
-					(reference "U8")
+					(reference "U5")
 					(unit 1)
 				)
 			)
@@ -1432,7 +1406,7 @@
 		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "5eadd088-be55-4144-abd0-e3cd5cdcc55b")
-		(property "Reference" "R10"
+		(property "Reference" "R13"
 			(at 35.56 63.4999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1454,7 +1428,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 33.02 64.77 0)
 			(hide yes)
 			(show_name no)
@@ -1496,7 +1470,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/b28031e3-dbc0-406e-8faf-efb7f86de153"
-					(reference "R10")
+					(reference "R13")
 					(unit 1)
 				)
 			)
@@ -1514,7 +1488,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "67a416f6-5ff3-41e3-8d74-739bad32f340")
-		(property "Reference" "#PWR041"
+		(property "Reference" "#PWR028"
 			(at 49.53 54.61 0)
 			(hide yes)
 			(show_name no)
@@ -1574,7 +1548,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/b28031e3-dbc0-406e-8faf-efb7f86de153"
-					(reference "#PWR041")
+					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -1592,7 +1566,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "826ce115-7d1b-4919-8ffe-83179fc75412")
-		(property "Reference" "C24"
+		(property "Reference" "C26"
 			(at 52.07 43.1862 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1614,7 +1588,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 49.53 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -1656,7 +1630,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/b28031e3-dbc0-406e-8faf-efb7f86de153"
-					(reference "C24")
+					(reference "C26")
 					(unit 1)
 				)
 			)
@@ -1674,7 +1648,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "899b753c-c2da-4461-8a9e-2ad48fa212b5")
-		(property "Reference" "U8"
+		(property "Reference" "U5"
 			(at 78.74 40.64 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1694,7 +1668,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:VSSOP-8_3x3mm_P0.65mm"
 			(at 80.01 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -1754,7 +1728,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/b28031e3-dbc0-406e-8faf-efb7f86de153"
-					(reference "U8")
+					(reference "U5")
 					(unit 2)
 				)
 			)
@@ -1772,7 +1746,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9299fb2e-0339-49f4-b9f7-b78bcd8e286e")
-		(property "Reference" "Y2"
+		(property "Reference" "Y1"
 			(at 57.15 54.5398 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1840,7 +1814,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/b28031e3-dbc0-406e-8faf-efb7f86de153"
-					(reference "Y2")
+					(reference "Y1")
 					(unit 1)
 				)
 			)
@@ -1858,7 +1832,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a4b306ca-4518-47ec-97c4-a3ea27036279")
-		(property "Reference" "#PWR039"
+		(property "Reference" "#PWR027"
 			(at 45.72 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -1918,7 +1892,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/b28031e3-dbc0-406e-8faf-efb7f86de153"
-					(reference "#PWR039")
+					(reference "#PWR027")
 					(unit 1)
 				)
 			)
@@ -1936,7 +1910,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d42b096d-c22e-4a34-9907-4ed71ec99517")
-		(property "Reference" "#PWR045"
+		(property "Reference" "#PWR029"
 			(at 72.39 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -1997,7 +1971,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/b28031e3-dbc0-406e-8faf-efb7f86de153"
-					(reference "#PWR045")
+					(reference "#PWR029")
 					(unit 1)
 				)
 			)

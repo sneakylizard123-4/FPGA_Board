@@ -1129,6 +1129,16 @@
 			(embedded_fonts no)
 		)
 	)
+	(text "add led indicators"
+		(exclude_from_sim no)
+		(at 58.4199 43.0914 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "2623617f-5dc5-4bad-8383-889c0e947f86")
+	)
 	(junction
 		(at 54.61 74.93)
 		(diameter 0)
@@ -1984,7 +1994,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 54.61 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -2044,7 +2054,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "01c5ddc9-018d-44ee-88ad-f0af581d2c92")
-		(property "Reference" "U4"
+		(property "Reference" "U3"
 			(at 43.18 57.15 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2116,7 +2126,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/76f7b54c-e28b-4bc1-87b2-9b178c63eb5d"
-					(reference "U4")
+					(reference "U3")
 					(unit 1)
 				)
 			)
@@ -2134,7 +2144,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "041159aa-7da2-49f8-b5bb-18a5fcade6cd")
-		(property "Reference" "#PWR043"
+		(property "Reference" "#PWR09"
 			(at 88.9 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -2194,7 +2204,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/76f7b54c-e28b-4bc1-87b2-9b178c63eb5d"
-					(reference "#PWR043")
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -2234,7 +2244,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 64.77 27.94 0)
 			(hide yes)
 			(show_name no)
@@ -2316,7 +2326,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 15.24 27.94 0)
 			(hide yes)
 			(show_name no)
@@ -2398,7 +2408,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 64.77 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -2458,7 +2468,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4be17c85-0755-4f64-99b0-434ebf16f342")
-		(property "Reference" "U8"
+		(property "Reference" "U5"
 			(at 95.25 46.9899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2480,7 +2490,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:VSSOP-8_3x3mm_P0.65mm"
 			(at 88.9 48.26 0)
 			(hide yes)
 			(show_name no)
@@ -2540,7 +2550,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/76f7b54c-e28b-4bc1-87b2-9b178c63eb5d"
-					(reference "U8")
+					(reference "U5")
 					(unit 3)
 				)
 			)
@@ -2558,7 +2568,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "50d14c53-7da6-4487-9e43-4cabd139f5b4")
-		(property "Reference" "U3"
+		(property "Reference" "U2"
 			(at 43.18 19.05 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2630,7 +2640,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/76f7b54c-e28b-4bc1-87b2-9b178c63eb5d"
-					(reference "U3")
+					(reference "U2")
 					(unit 1)
 				)
 			)
@@ -2670,7 +2680,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 15.24 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -2730,7 +2740,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "83c08259-16b0-4585-ba14-247f7bccd2c9")
-		(property "Reference" "C25"
+		(property "Reference" "C15"
 			(at 95.25 27.9462 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2752,7 +2762,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 92.71 29.21 0)
 			(hide yes)
 			(show_name no)
@@ -2794,7 +2804,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/76f7b54c-e28b-4bc1-87b2-9b178c63eb5d"
-					(reference "C25")
+					(reference "C15")
 					(unit 1)
 				)
 			)
@@ -2834,7 +2844,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 25.4 104.14 0)
 			(hide yes)
 			(show_name no)
@@ -2894,7 +2904,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9fab3302-e2bd-4a79-a1fe-8c62b9baadd4")
-		(property "Reference" "#PWR044"
+		(property "Reference" "#PWR010"
 			(at 92.71 39.37 0)
 			(hide yes)
 			(show_name no)
@@ -2954,7 +2964,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/76f7b54c-e28b-4bc1-87b2-9b178c63eb5d"
-					(reference "#PWR044")
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -2972,7 +2982,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a2a1ed2c-83ad-4fe8-82b2-efc86fdb3c7d")
-		(property "Reference" "#PWR010"
+		(property "Reference" "#PWR08"
 			(at 43.18 120.65 0)
 			(hide yes)
 			(show_name no)
@@ -3032,7 +3042,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/76f7b54c-e28b-4bc1-87b2-9b178c63eb5d"
-					(reference "#PWR010")
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -3072,7 +3082,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 54.61 104.14 0)
 			(hide yes)
 			(show_name no)
@@ -3154,7 +3164,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 25.4 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -3214,7 +3224,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b263833c-65e4-4925-8490-3e4775a31580")
-		(property "Reference" "U5"
+		(property "Reference" "U4"
 			(at 43.18 95.25 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3286,7 +3296,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/76f7b54c-e28b-4bc1-87b2-9b178c63eb5d"
-					(reference "U5")
+					(reference "U4")
 					(unit 1)
 				)
 			)
@@ -3326,7 +3336,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 64.77 104.14 0)
 			(hide yes)
 			(show_name no)
@@ -3386,7 +3396,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "be582d2a-262f-4fa6-a0d1-72d69a8eac05")
-		(property "Reference" "#PWR08"
+		(property "Reference" "#PWR06"
 			(at 43.18 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -3446,7 +3456,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/76f7b54c-e28b-4bc1-87b2-9b178c63eb5d"
-					(reference "#PWR08")
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
@@ -3486,7 +3496,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 15.24 104.14 0)
 			(hide yes)
 			(show_name no)
@@ -3546,7 +3556,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d6dcb289-fadf-456f-8ae9-b5ddfa31df45")
-		(property "Reference" "#PWR09"
+		(property "Reference" "#PWR07"
 			(at 43.18 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -3606,7 +3616,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/76f7b54c-e28b-4bc1-87b2-9b178c63eb5d"
-					(reference "#PWR09")
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -3646,7 +3656,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 54.61 27.94 0)
 			(hide yes)
 			(show_name no)
@@ -3728,7 +3738,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 25.4 27.94 0)
 			(hide yes)
 			(show_name no)

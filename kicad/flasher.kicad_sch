@@ -3690,7 +3690,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "03417dc5-da29-4db8-90ae-b3faca0697b7")
-		(property "Reference" "#PWR051"
+		(property "Reference" "#PWR036"
 			(at 156.21 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -3750,7 +3750,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "#PWR051")
+					(reference "#PWR036")
 					(unit 1)
 				)
 			)
@@ -3767,7 +3767,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "0d2ae715-b544-418e-88fb-e2570ea42398")
-		(property "Reference" "TP7"
+		(property "Reference" "TP9"
 			(at 121.412 99.06 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3828,7 +3828,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "TP7")
+					(reference "TP9")
 					(unit 1)
 				)
 			)
@@ -3845,7 +3845,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "1d1562f2-e65e-45c4-ab99-e3812f05d3a2")
-		(property "Reference" "TP5"
+		(property "Reference" "TP7"
 			(at 121.412 93.98 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3906,7 +3906,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "TP5")
+					(reference "TP7")
 					(unit 1)
 				)
 			)
@@ -3923,7 +3923,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "2917535e-56b5-4611-8217-a1ab6e28b6b4")
-		(property "Reference" "TP1"
+		(property "Reference" "TP3"
 			(at 121.412 83.82 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3984,7 +3984,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "TP1")
+					(reference "TP3")
 					(unit 1)
 				)
 			)
@@ -4002,7 +4002,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2d9e3836-e8c2-44c7-8457-e25c12a1a158")
-		(property "Reference" "#PWR052"
+		(property "Reference" "#PWR038"
 			(at 166.37 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -4062,7 +4062,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "#PWR052")
+					(reference "#PWR038")
 					(unit 1)
 				)
 			)
@@ -4080,7 +4080,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2e0e678e-a993-4244-9da0-bdc5f6e2ced2")
-		(property "Reference" "#PWR056"
+		(property "Reference" "#PWR032"
 			(at 46.99 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -4140,7 +4140,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "#PWR056")
+					(reference "#PWR032")
 					(unit 1)
 				)
 			)
@@ -4157,7 +4157,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "3690816d-6537-42bd-bbeb-1c634fd5fdb9")
-		(property "Reference" "TP9"
+		(property "Reference" "TP11"
 			(at 121.412 104.14 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4218,7 +4218,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "TP9")
+					(reference "TP11")
 					(unit 1)
 				)
 			)
@@ -4236,7 +4236,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3b8a5ecf-9e75-499c-b2a3-92ba578c91db")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR033"
 			(at 93.98 138.43 0)
 			(hide yes)
 			(show_name no)
@@ -4296,7 +4296,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "#PWR01")
+					(reference "#PWR033")
 					(unit 1)
 				)
 			)
@@ -4314,7 +4314,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3ceb9c2d-fc80-462d-b2e2-47ab218dbe84")
-		(property "Reference" "U1"
+		(property "Reference" "U8"
 			(at 99.9333 52.07 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4516,7 +4516,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "U1")
+					(reference "U8")
 					(unit 1)
 				)
 			)
@@ -4626,7 +4626,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "5af4c7fc-9440-4a66-a47c-743417f65d38")
-		(property "Reference" "TP4"
+		(property "Reference" "TP6"
 			(at 121.412 91.44 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4687,7 +4687,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "TP4")
+					(reference "TP6")
 					(unit 1)
 				)
 			)
@@ -4704,7 +4704,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "5b46e740-fd89-4053-aafe-d05cd9a89cf0")
-		(property "Reference" "TP12"
+		(property "Reference" "TP2"
 			(at 121.412 73.66 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4765,7 +4765,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "TP12")
+					(reference "TP2")
 					(unit 1)
 				)
 			)
@@ -4782,7 +4782,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "5b669fe9-d37b-4dfa-becf-2edbfec99e13")
-		(property "Reference" "R13"
+		(property "Reference" "R21"
 			(at 140.208 138.938 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4802,7 +4802,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 143.51 140.97 0)
 			(hide yes)
 			(show_name no)
@@ -4844,7 +4844,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "R13")
+					(reference "R21")
 					(unit 1)
 				)
 			)
@@ -4862,7 +4862,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5e0c0232-36cc-4b6f-b987-8d4c2099232c")
-		(property "Reference" "#PWR053"
+		(property "Reference" "#PWR039"
 			(at 166.37 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -4922,7 +4922,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "#PWR053")
+					(reference "#PWR039")
 					(unit 1)
 				)
 			)
@@ -4940,7 +4940,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "65bce9ca-2f03-4328-9c3b-ddde5d4d117f")
-		(property "Reference" "C26"
+		(property "Reference" "C31"
 			(at 133.35 44.4562 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4962,7 +4962,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 130.81 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -5004,7 +5004,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "C26")
+					(reference "C31")
 					(unit 1)
 				)
 			)
@@ -5022,7 +5022,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "71f67d71-763d-4762-bdcc-e3a32f1eeca0")
-		(property "Reference" "FB2"
+		(property "Reference" "FB3"
 			(at 152.3619 48.26 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5042,7 +5042,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Inductor_SMD:L_0603_1608Metric"
 			(at 152.4 56.388 90)
 			(hide yes)
 			(show_name no)
@@ -5084,7 +5084,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "FB2")
+					(reference "FB3")
 					(unit 1)
 				)
 			)
@@ -5101,7 +5101,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "783e87fd-aaad-45bd-912c-07c407dbbefe")
-		(property "Reference" "TP11"
+		(property "Reference" "TP1"
 			(at 121.412 68.58 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5162,7 +5162,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "TP11")
+					(reference "TP1")
 					(unit 1)
 				)
 			)
@@ -5179,7 +5179,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "79c94f5a-f680-4fcf-a846-b20695342e17")
-		(property "Reference" "TP2"
+		(property "Reference" "TP4"
 			(at 121.412 86.36 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5240,7 +5240,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "TP2")
+					(reference "TP4")
 					(unit 1)
 				)
 			)
@@ -5258,7 +5258,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "81835f1d-8ea0-462e-927b-1a28a2b0e0fb")
-		(property "Reference" "C31"
+		(property "Reference" "C28"
 			(at 40.64 73.6662 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5280,7 +5280,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 38.1 74.93 0)
 			(hide yes)
 			(show_name no)
@@ -5322,7 +5322,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "C31")
+					(reference "C28")
 					(unit 1)
 				)
 			)
@@ -5340,7 +5340,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "82f493bc-01c5-4ad3-95c2-a3b169079b61")
-		(property "Reference" "#PWR054"
+		(property "Reference" "#PWR031"
 			(at 38.1 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -5400,7 +5400,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "#PWR054")
+					(reference "#PWR031")
 					(unit 1)
 				)
 			)
@@ -5417,7 +5417,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "89fe4770-6358-4751-86c3-d036898753cc")
-		(property "Reference" "TP6"
+		(property "Reference" "TP8"
 			(at 121.412 96.52 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5478,7 +5478,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "TP6")
+					(reference "TP8")
 					(unit 1)
 				)
 			)
@@ -5496,7 +5496,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "90c01ded-ac47-4c88-b781-2cc0725aa77b")
-		(property "Reference" "R11"
+		(property "Reference" "R19"
 			(at 128.27 132.08 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5516,7 +5516,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 128.27 138.43 0)
 			(hide yes)
 			(show_name no)
@@ -5558,7 +5558,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "R11")
+					(reference "R19")
 					(unit 1)
 				)
 			)
@@ -5576,7 +5576,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "973e3c31-07e7-49a7-acf5-e742ad411ceb")
-		(property "Reference" "C27"
+		(property "Reference" "C33"
 			(at 158.75 57.1562 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5598,7 +5598,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 156.21 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -5640,7 +5640,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "C27")
+					(reference "C33")
 					(unit 1)
 				)
 			)
@@ -5658,7 +5658,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "98cba1c4-69c3-4282-bd96-0ffd85e32ac8")
-		(property "Reference" "#PWR046"
+		(property "Reference" "#PWR035"
 			(at 135.89 167.64 0)
 			(hide yes)
 			(show_name no)
@@ -5718,7 +5718,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "#PWR046")
+					(reference "#PWR035")
 					(unit 1)
 				)
 			)
@@ -5736,7 +5736,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "aceee9ef-9f8f-40b9-ae4f-959016c4df3b")
-		(property "Reference" "C1"
+		(property "Reference" "C29"
 			(at 113.03 44.4562 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5758,7 +5758,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 110.49 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -5800,7 +5800,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "C1")
+					(reference "C29")
 					(unit 1)
 				)
 			)
@@ -5817,7 +5817,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "af91b255-955d-48a7-8a65-e7c1764b0d19")
-		(property "Reference" "R14"
+		(property "Reference" "R22"
 			(at 149.098 152.908 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5837,7 +5837,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 152.4 154.94 0)
 			(hide yes)
 			(show_name no)
@@ -5879,7 +5879,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "R14")
+					(reference "R22")
 					(unit 1)
 				)
 			)
@@ -5896,7 +5896,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "b847342e-11fd-4b56-b171-b67726f61379")
-		(property "Reference" "TP3"
+		(property "Reference" "TP5"
 			(at 121.412 88.9 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5957,7 +5957,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "TP3")
+					(reference "TP5")
 					(unit 1)
 				)
 			)
@@ -5975,7 +5975,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "be0fd3ef-5971-4357-9f03-96820ae269e3")
-		(property "Reference" "R12"
+		(property "Reference" "R20"
 			(at 143.51 129.54 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5995,7 +5995,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 143.51 135.89 0)
 			(hide yes)
 			(show_name no)
@@ -6037,7 +6037,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "R12")
+					(reference "R20")
 					(unit 1)
 				)
 			)
@@ -6055,7 +6055,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cce6648d-0d19-4802-8312-7d453f5b557c")
-		(property "Reference" "#PWR050"
+		(property "Reference" "#PWR037"
 			(at 156.21 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -6115,7 +6115,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "#PWR050")
+					(reference "#PWR037")
 					(unit 1)
 				)
 			)
@@ -6132,7 +6132,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "d577cd02-984a-4fc5-877e-1b231f3416bd")
-		(property "Reference" "R15"
+		(property "Reference" "R18"
 			(at 46.482 86.106 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6152,7 +6152,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 49.53 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -6194,7 +6194,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "R15")
+					(reference "R18")
 					(unit 1)
 				)
 			)
@@ -6212,7 +6212,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d83180ba-c3d4-48b3-945a-b263f81755c0")
-		(property "Reference" "C32"
+		(property "Reference" "C27"
 			(at 27.94 73.6662 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6234,7 +6234,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 25.4 74.93 0)
 			(hide yes)
 			(show_name no)
@@ -6276,7 +6276,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "C32")
+					(reference "C27")
 					(unit 1)
 				)
 			)
@@ -6294,7 +6294,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dacdb998-b3f5-4e1d-bda7-53f50f32b64e")
-		(property "Reference" "C2"
+		(property "Reference" "C30"
 			(at 123.19 44.4562 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6316,7 +6316,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 120.65 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -6358,7 +6358,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "C2")
+					(reference "C30")
 					(unit 1)
 				)
 			)
@@ -6375,7 +6375,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "df6ccf0e-5512-44af-b982-e9ddbb9b502c")
-		(property "Reference" "TP8"
+		(property "Reference" "TP10"
 			(at 121.412 101.6 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6436,7 +6436,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "TP8")
+					(reference "TP10")
 					(unit 1)
 				)
 			)
@@ -6454,7 +6454,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dfea1592-0994-4ded-96c0-4b3ee0a799b6")
-		(property "Reference" "C28"
+		(property "Reference" "C32"
 			(at 158.75 33.0262 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6476,7 +6476,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 156.21 34.29 0)
 			(hide yes)
 			(show_name no)
@@ -6518,7 +6518,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "C28")
+					(reference "C32")
 					(unit 1)
 				)
 			)
@@ -6536,7 +6536,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e6eaf4da-da16-4306-96ae-d1c5e76e9624")
-		(property "Reference" "FB1"
+		(property "Reference" "FB2"
 			(at 152.3619 24.13 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6556,7 +6556,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Inductor_SMD:L_0603_1608Metric"
 			(at 152.4 32.258 90)
 			(hide yes)
 			(show_name no)
@@ -6598,7 +6598,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "FB1")
+					(reference "FB2")
 					(unit 1)
 				)
 			)
@@ -6616,7 +6616,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ec30ddfe-d744-43af-988b-b8bc9aa1cbb4")
-		(property "Reference" "C29"
+		(property "Reference" "C35"
 			(at 168.91 57.1562 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6638,7 +6638,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 166.37 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -6680,7 +6680,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "C29")
+					(reference "C35")
 					(unit 1)
 				)
 			)
@@ -6698,7 +6698,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ede531b9-4fdb-4887-9b86-bff5483fced6")
-		(property "Reference" "#PWR049"
+		(property "Reference" "#PWR034"
 			(at 120.65 57.15 0)
 			(hide yes)
 			(show_name no)
@@ -6758,7 +6758,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "#PWR049")
+					(reference "#PWR034")
 					(unit 1)
 				)
 			)
@@ -6776,7 +6776,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f1bc06a6-f3e1-4c1b-bfd9-7fe27055af04")
-		(property "Reference" "C30"
+		(property "Reference" "C34"
 			(at 168.91 33.0262 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6798,7 +6798,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 166.37 34.29 0)
 			(hide yes)
 			(show_name no)
@@ -6840,7 +6840,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "C30")
+					(reference "C34")
 					(unit 1)
 				)
 			)
@@ -6858,7 +6858,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f236d3b8-0604-4bd4-9997-98c92eba003b")
-		(property "Reference" "#PWR057"
+		(property "Reference" "#PWR030"
 			(at 25.4 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -6918,7 +6918,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "#PWR057")
+					(reference "#PWR030")
 					(unit 1)
 				)
 			)
@@ -6935,7 +6935,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "fc9a7ee4-012e-4e8e-a188-6be8c76272b2")
-		(property "Reference" "TP10"
+		(property "Reference" "TP12"
 			(at 121.412 106.68 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6996,7 +6996,7 @@
 		(instances
 			(project "FPGA_Board"
 				(path "/ed5fd1e9-0492-49f2-b736-bd16e22cfa0b/9842cdb2-2418-485e-9db8-b113a4b99c71"
-					(reference "TP10")
+					(reference "TP12")
 					(unit 1)
 				)
 			)
