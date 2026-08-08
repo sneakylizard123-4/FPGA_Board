@@ -135,7 +135,24 @@ No firmware is required — the board is purely FPGA + boot memory.
 
 ## Images
 
-*Screenshots to be added — PCB layout and schematic renders pending.*
+### PCB Layout
+
+![PCB editor](images/pcb-editor.png)
+
+### Schematic
+
+![Root schematic](images/schematic/01-root.png)
+![USB](images/schematic/02-usb.png)
+![Power](images/schematic/03-power.png)
+![FPGA](images/schematic/04-fpga.png)
+![Clock](images/schematic/05-clock.png)
+![Config](images/schematic/06-config.png)
+![Flasher](images/schematic/07-flasher.png)
+![Headers](images/schematic/08-headers.png)
+
+### 3D Render
+
+<video src="kicad/Renders/260808_111839/FPGA_Board.mp4" controls></video>
 
 ---
 
