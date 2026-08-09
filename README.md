@@ -156,6 +156,25 @@ No firmware is required — the board is purely FPGA + boot memory.
 
 ---
 
+## Fabrication
+
+Order spec (JLCPCB):
+
+| Item | Spec |
+|------|------|
+| PCB color | Purple |
+| Thickness | 1.6 mm |
+| Surface finish | Lead-free HASL |
+| Panel size | 100 × 150 mm, no framework |
+| Stencil | Top side, 100 × 150 mm no-framework |
+| Cost | PCB $20, stencil $18 |
+
+Board outline is 50 × 70 mm (rounded corners), well inside the panel tier.
+BOM is in [BOM.csv](BOM.csv) with LCSC part numbers; production outputs
+(gerbers, drill, positions, IPC netlist) are in [kicad/production/](kicad/production/).
+
+---
+
 ## Project Status
 
 - [x] System architecture
