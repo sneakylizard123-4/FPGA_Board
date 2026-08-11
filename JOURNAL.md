@@ -84,3 +84,22 @@ still routing, but the placement feels good so far. the trick will be keeping th
 ![pcb](images/pcb-editor.png)
 
 **Total time spent: 3 hours**
+
+# August 8: firmware - rainbow proof of life
+
+wrote the first bitstream for the board. pulled the exact netlist out of the schematic with kicad-cli to get the pin map straight instead of guessing from the library symbols - that caught the fact that the green led (d2) is wired to cdone as a config indicator, not a user gpio, and that the 12mhz clock lands on iob_25b_g3 (package pin 20).
+
+the firmware is a rainbow demo: a 12mhz clock divider steps an 8-bit hue 25 times a second, a tiny 6-segment hsv->rgb block turns the hue into rgb, and the rgb0/1/2 open-drain pins (pins 39/40/41) drive the common-anode led active-low. one full lap every 10 seconds.
+
+set up the icestorm flow in firmware/ - yosys -> nextpnr-ice40 -> icepack -> iceprog behind a makefile. yosys synths clean, timing passes at 12mhz (the design is good for ~62mhz, so lots of headroom), and the rgb pins land exactly where the pcf says they should. bitstream is 104kb, fits the w25q128 with room for a bootloader later.
+![rainbow](images/firmware.png)
+
+**Total time spent: 2 hours**
+
+# August 8: production files and fab order
+
+prepared for manufacturing. committed the fabrication-toolkit outputs - gerbers, drill, positions, ipc netlist, plus the bom and designators - under kicad/production/. promoted bom.csv to the repo root as the main bom file and added a cost column plus the pcb and stencil line items so the whole order lives in one place.
+
+placed the order: purple solder mask, 1.6mm board, lead-free hasl, 100x150mm panel with no framework. the board itself is 50x70mm with rounded corners so it fits the tier comfortably. stencil for the top side only - the only through-hole parts are the headers and the usb-c, everything else is smd and the stencil is for the 0402s and the qfn-48. pcb is $20, stencil is $18.
+
+**Total time spent: 1 hour**
