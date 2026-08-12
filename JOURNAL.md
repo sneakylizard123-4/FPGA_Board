@@ -101,5 +101,6 @@ set up the icestorm flow in firmware/ - yosys -> nextpnr-ice40 -> icepack -> ice
 prepared for manufacturing. committed the fabrication-toolkit outputs - gerbers, drill, positions, ipc netlist, plus the bom and designators - under kicad/production/. promoted bom.csv to the repo root as the main bom file and added a cost column plus the pcb and stencil line items so the whole order lives in one place.
 
 placed the order: purple solder mask, 1.6mm board, lead-free hasl, 100x150mm panel with no framework. the board itself is 50x70mm with rounded corners so it fits the tier comfortably. stencil for the top side only - the only through-hole parts are the headers and the usb-c, everything else is smd and the stencil is for the 0402s and the qfn-48. pcb is $20, stencil is $18.
+![board render](images/board-render.png)
 
 **Total time spent: 1 hour**
