@@ -117,3 +117,5 @@ sent the schematics out for review and got back a solid list from the forge keep
 none of these are board-breaking - theyre the kind of stuff that separates a dev board from a product board. will fold the rc sequencing into the next revision if this goes to production.
 
 also updated the bom to include moq-aware pricing. turns out the flash chip (w25q128jvs) has an moq of 12 on lcsc, so even though the board only needs one, you have to buy a reel of 12. same story for the 5.1k and 10k resistors at moq 100. the total component cost per board comes to about $65.65 at moq-adjusted pricing, or $103.65 with the pcb and stencil.
+
+**Total time spent: 3 hours**
