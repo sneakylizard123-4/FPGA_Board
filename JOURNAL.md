@@ -104,3 +104,16 @@ placed the order: purple solder mask, 1.6mm board, lead-free hasl, 100x150mm pan
 ![board render](images/board-render.png)
 
 **Total time spent: 1 hour**
+
+# August 8: schematic review - external feedback
+
+sent the schematics out for review and got back a solid list from the forge keeper. most of the feedback was targeted and actionable:
+
+- r3/r4 (usb data line resistors): originally 5.1k, reviewer said they should be removed entirely since the ft232h drives the lines directly. changed them to 22r instead of removing - keeps some current limiting without fighting the driver. a compromise.
+- 100nf caps missing on usblc6 vbus (c37) and 93lc56bt vcc (c38): added both. the eeprom especially would benefit from the local decoupling, and it was just an oversight.
+- pullups on flash cs and sclk lines (r23/r24): added 10k pulls to vcc_io so the w25q128 doesn't see glitched commands during fpga power-up. good catch - floating cs on a spi flash is a recipe for spurious writes.
+- delay on fpga power sequencing: reviewer flagged the lack of sequencing between vcc (1.2v core) and vcc_io (3.3v). the tlv757s have fast rise times so in practice it should be fine, but noted as optional improvement for production.
+
+none of these are board-breaking - theyre the kind of stuff that separates a dev board from a product board. will fold the rc sequencing into the next revision if this goes to production.
+
+also updated the bom to include moq-aware pricing. turns out the flash chip (w25q128jvs) has an moq of 12 on lcsc, so even though the board only needs one, you have to buy a reel of 12. same story for the 5.1k and 10k resistors at moq 100. the total component cost per board comes to about $65.65 at moq-adjusted pricing, or $103.65 with the pcb and stencil.

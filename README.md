@@ -152,6 +152,7 @@ No firmware is required — the board is purely FPGA + boot memory.
 
 ### 3D Render
 
+![Board render](images/board-render.png)
 <video src="kicad/Renders/260808_111839/FPGA_Board.mp4" controls></video>
 
 ---
@@ -180,8 +181,8 @@ BOM is in [BOM.csv](BOM.csv) with LCSC part numbers; production outputs
 - [x] System architecture
 - [x] Schematic design
 - [x] PCB layout
-- [ ] Manufacturing files / DRC sign-off
-- [ ] BOM sourcing
+- [x] Manufacturing files / DRC sign-off
+- [x] BOM sourcing
 - [ ] Board fab + bring-up
 
 ---
