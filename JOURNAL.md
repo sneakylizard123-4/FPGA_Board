@@ -9,33 +9,39 @@ created_at: "2026-08-07T00:00:00Z"
 
 # August 7: project start and component selection
 
-started the fpga board project. wanted a small dev board around the lattice ice40 ultraplus - it packs a real amount of logic into a tiny qfn-48 and the open-source yosys/nextpnr/icestorm flow means i dont have to fight a vendor toolchain. also wanted it self-contained so i can program it over usb without dragging a programmer around.
+started the fpga board project. the goal i set myself: a small dev board around the lattice ice40 ultraplus, programmed over usb with no external programmer, using the fully open yosys/nextpnr/icestorm flow. i've had enough of vendor toolchains and license servers - if the design tools are half the fun then i want tools i can actually read the source of.
 
-picked the ice40up5k-sg48itr specifically. 5280 luts, 1.2v core, and the rgb0-2 pins can sink enough current to drive an rgb led directly, which is a neat trick for a tiny board.
+chip choice came down to the ice40up5k-sg48itr. 5280 luts doesn't sound like much next to an artix but it's genuinely plenty for soft cpus and glue logic experiments, the whole chip is a qfn-48 i can realistically hand-solder, and there's one quirk that sold me: the rgb0/1/2 pins are dedicated high-drive outputs meant to sink an rgb led directly. a status light for zero extra parts.
 
-the big decision was programming. most tiny fpga boards either use an external programmer or a jtag header. i wanted it all on board, so an ft232h over spi it is - it doubles as a general usb bridge if i ever need one. 16mb w25q128jvs flash for the boot bitstream.
+the big decision was programming. most small fpga boards punt on this - jtag header, bring your own dongle. i wanted the board self-contained, so the plan is an ft232h sitting on the spi flash bus that can push bitstreams itself. bonus: it's a general purpose usb bridge the rest of the time, which is handy to have on any bench.
 
-set up the kicad project as hierarchical sheets so each block stays manageable - usb, power, fpga, clock, config, flasher, headers.
+for boot storage, 16mb w25q128jvs flash. absurd overkill for a ~104kb bitstream, but it costs pennies more than the small ones and leaves room for a bootloader plus whatever else i want to ship in there.
+
+set up the kicad project as hierarchical sheets - usb, power, fpga, clock, config, flasher, headers. one giant flat sheet is how you end up with nets named net_1_234 and no idea what they do.
 ![root schematic](images/schematic/01-root.png)
 
 **Total time spent: 3 hours**
 
 # August 7: tinyfpga boot mode
 
-spent the afternoon on the boot/config question. wrote out a tinyfpga bx compatible mode as a separate design note sheet (tinyfpga.kicad_sch) so i could think through it before committing to the strap resistors.
+spent the afternoon on the boot/config question before committing any of it to copper, which is why this is a design note sheet (tinyfpga.kicad_sch) and not wiring yet.
 
-the idea: the flash can hold either a raw bitstream (spi master mode, the default) or the tinyfpga bootloader, which lets the ft232h push bitstreams straight over usb without reflashing the flash every time. switching between them is just a few 0-ohm straps - r16/r17/r18 on the config sheet.
+the actual question underneath all of this: at power-on, who owns the flash? if a raw bitstream sits in there, the ice40 wakes in spi master mode and slurps it in by itself - that's the default and it always works. but pushing a new bitstream then means reflashing the whole thing every single time, which is slow and wears the flash. the tinyfpga trick is storing a bootloader in the flash instead, so the ft232h can squirt new bitstreams straight over usb.
 
-for the bootloader path the serial resistors need to change (68r on the data lines, 1.5k pull on one of them), so i left those as install-options rather than stuffing them by default. it means the board can do both without a board respin.
+the wrinkle: the bootloader path needs different series resistors on the data lines than raw spi mode (68r series, 1.5k pull on one line). you can't have both stuffed at once.
+
+solution i settled on: switching between the two is just three 0-ohm straps - r16/r17/r18 on the config sheet - and the bootloader-only resistors are install-options rather than stuffed defaults. so the bare board boots from flash like a normal product, and if i want usb-bootloader convenience later it's five minutes with a soldering iron, not a respin.
 ![config](images/schematic/06-config.png)
 
 **Total time spent: 3 hours**
 
 # August 8: schematic - usb and power
 
-did the usb sheet first. usb-c receptacle for usb2.0, two 5.1k cc pulldowns so it presents as a device. usblc6-2sc6 esd clamp on the data lines, ferrite bead on vbus. two 10uf bulk caps at the connector.
+usb sheet first since every other rail hangs off it. usb-c receptacle wired for usb2.0 duty, two 5.1k cc pulldowns so a host recognizes the board as a device instead of ignoring it, usblc6-2sc6 esd clamp right at the connector where the static actually arrives. ferrite bead on vbus and two 10uf bulk caps so cable inductance doesn't drag the input around.
 
-power sheet next. three tlv757 ldos off the 5v rail - 1.2v for the fpga core, 2.5v for the vpp/io banks, 3.3v for the io, flash, and ft232h. decoupling on every rail. added a couple of 74auc2g240 dual buffers to translate between the 3.3v and 1.2v domains on the clock and config paths - the ice40's spi pins can run at a lower voltage and the ucsi buffer keeps the levels clean.
+power next. three rails off 5v: 1.2v for the fpga core, 2.5v for vpp during sram configuration, 3.3v for io/flash/ft232h. all from tlv757 ldos - at these currents heat is a non-issue and i'd rather have three dumb linear regulators whose behavior i can predict than one switcher plus filters.
+
+the subtle bit was level translation. the ft232h speaks 3.3v but the ice40's config/spi pins live closer to the core voltage, so a couple of 74auc2g240 dual buffers sit on the clock and config paths keeping the domains honest. cheap insurance against quietly degrading the part i care most about.
 ![usb](images/schematic/02-usb.png)
 ![power](images/schematic/03-power.png)
 
@@ -43,80 +49,84 @@ power sheet next. three tlv757 ldos off the 5v rail - 1.2v for the fpga core, 2.
 
 # August 8: schematic - fpga core
 
-the fpga sheet. ice40up5k in qfn-48 with the exposed pad on ground, decoupling caps against every power pin. vpp_2v5 for the sram configuration. wired the rgb0/1/2 open-drain pins to the argb led through series resistors, plus a plain green status led.
+the main event. ice40up5k in qfn-48, exposed pad to ground with vias under it, decoupling against every power pin. vpp_2v5 feeds sram configuration. rgb0/1/2 go to the argb led through series resistors (their whole party trick) plus a plain green status led.
 
-reset button with a 10k pullup, cdone pulled up. the w25q128jvs spi flash sits right next to the fpga's dedicated spi pins (io32-35). spent a while on the flash pin ordering - the ice40 has specific pins for spi_si/so/sck/ss in master mode and it was easy to swap two of them if i wasnt careful.
+one thing worth writing down because i'll forget: cdone goes high once configuration succeeds, so wiring the green led to cdone means the led is literally a "did the bitstream load" indicator before any user code runs. free debugging.
 
-the si/so lines to the flash also branch off toward the config sheet so the ft232h can either own the flash (bootloader mode) or stay out of the way.
+reset button with 10k pullup, cdone pulled up per datasheet. the w25q128jvs flash sits right next to the fpga's dedicated spi pins (io32-35). i spent an embarrassing amount of time on the flash pin ordering - the ice40 names its master-mode pins spi_si/so/sck/ss and it would be really easy to swap two of them and only find out when iceprog hangs forever. triple-checked against the datasheet tables, then checked again.
+
+the si/so lines also branch toward the config sheet, because in bootloader mode the ft232h needs to own that bus while the fpga stays asleep. two masters, one slave - arbitration by strap resistor.
 ![fpga](images/schematic/04-fpga.png)
 
 **Total time spent: 5 hours**
 
 # August 8: schematic - clock, flasher, headers
 
-clock sheet is simple - a 12mhz sg-210stf oscillator through a 74auc2g240 buffer to the fpga, plus a copy of the clock to the ft232h so the bridge is clocked too.
+clock sheet is deliberately boring: a 12mhz sg-210stf oscillator through a 74auc2g240 buffer into the fpga, with a copy sent to the ft232h so the bridge has its own reference too. picked 12mhz because the whole icestorm ecosystem assumes it and it divides down to whatever the design actually needs.
 ![clock](images/schematic/05-clock.png)
 
-flasher sheet is the biggest. ft232h in lqfp-48 with a 93lc56bt eeprom on its mpsse config pins, 12 test points scattered along the spi and control lines, ferrite-filtered power, and the usual decoupling mess. the ft232h was actually pretty involved - 48 pins, most of them nc or needing to be tied to a known state. went through the datasheet pin by pin so nothing floats.
+flasher sheet ended up the biggest. ft232h in lqfp-48 with a 93lc56bt eeprom hanging off its mpsse config pins - without the eeprom the chip enumerates with generic descriptors and you're stuck reprogramming it from a host every boot. twelve test points scattered along the spi/control lines because when (not if) bring-up stalls, scope probes need somewhere legal to land. ferrite-filtered power and the usual decoupling crowd.
+
+the ft232h itself was honestly the most annoying part of the entire schematic. 48 pins where most are nc or must be tied somewhere definite - floating inputs on this chip cause real misbehavior, not theoretical ones. went through the datasheet pin by pin, one row of the table at a time, ticking them off.
 ![flasher](images/schematic/07-flasher.png)
 
-headers sheet - two 2x24 pin header breaking out the io pins. the ice40 has a bunch of io pairs (iob_* and iot_* pins) and routing them all to two tidy connectors keeps the board useful as a general fpga breakout.
+headers sheet: two 2x24 connectors breaking out the io. the ice40 has all these io pairs (iob_* and iot_* pins) and routing every last one to tidy edge connectors turns the board from "a thing with an fpga on it" into a general breakout i can still be using years from now.
 ![headers](images/schematic/08-headers.png)
 
 **Total time spent: 6 hours**
 
 # August 8: schematic review
 
-full review of all sheets, ran erc. caught a couple of net-name mismatches between the fpga and config sheets (the same signal with two names) and a dangling label on the flasher. fixed them, erc is clean now.
+full pass over every sheet, then erc. caught a couple of net-name mismatches between the fpga and config sheets (same physical signal, two different labels - classic hierarchical sheet disease) plus a dangling label on the flasher. fixed, erc clean.
 
-the r16/r17/r18 strap designators also show up on the tinyfpga note sheet which is confusing when reading the schematic - theyre the same physical resistors so its intentional, but i might rename the note sheet's copies later to make it less confusing.
+also noticed the r16/r17/r18 strap designators exist twice: once on the config sheet, once on the tinyfpga note sheet. that's intentional (same physical resistors, the note sheet documents the alternate population) but reading it cold is confusing. left a mental note to rename the note-sheet copies if this ever gets a second reader.
 ![root schematic](images/schematic/01-root.png)
 
 **Total time spent: 2 hours**
 
 # August 8: pcb start
 
-imported the netlist and set up the board. 2-layer, 50x70mm with rounded corners - plenty of room for a qfn-48 fpga and a header on the edge. drew the edge cuts with the corner arcs so it feels like a proper product board and not a rectangle.
+imported the netlist and set up the board: 4-layer, 50x70mm, rounded corners. went back and forth on layer count first - two would be cheaper, but then every return path fights over one ground plane, and this board has an fpga, an ft232h, and three rails sharing tight space. four layers buy quiet reference planes and actual routing channels for a few dollars more.
 
-placed the big stuff - usb-c on one edge, header on the opposite so it can sit on a breadboard or dock edge-to-edge. fpga in the middle with the flash right beside it, ft232h on its own side away from the fpga. started the fanout.
+placement first. usb-c on one edge, header bank opposite so the board can straddle a breadboard or dock edge-to-edge. fpga center with the flash immediately adjacent (those four spi lines want to be millimeters long, not centimeters). ft232h exiled to its own corner away from the fpga so its activity doesn't sit on top of the config lines.
 
-still routing, but the placement feels good so far. the trick will be keeping the spi lines short and the 1.2v rail clean.
+started fanout. the thing i'm watching from here on: keeping spi short and the 1.2v core rail quiet.
 ![pcb](images/pcb-editor.png)
 
 **Total time spent: 3 hours**
 
 # August 8: firmware - rainbow proof of life
 
-wrote the first bitstream for the board. pulled the exact netlist out of the schematic with kicad-cli to get the pin map straight instead of guessing from the library symbols - that caught the fact that the green led (d2) is wired to cdone as a config indicator, not a user gpio, and that the 12mhz clock lands on iob_25b_g3 (package pin 20).
+wrote the first bitstream before finishing the layout, on purpose - i wanted proof the pin mapping in my head matched the pin mapping in the schematic before the board goes to fab and freezes it. pulled the exact netlist out with kicad-cli instead of trusting library symbols, which immediately earned its keep: turns out the green led (d2) hangs off cdone as a config indicator (not a user gpio), and the 12mhz clock lands on iob_25b_g3, package pin 20. either assumption wrong = bricked-looking board.
 
-the firmware is a rainbow demo: a 12mhz clock divider steps an 8-bit hue 25 times a second, a tiny 6-segment hsv->rgb block turns the hue into rgb, and the rgb0/1/2 open-drain pins (pins 39/40/41) drive the common-anode led active-low. one full lap every 10 seconds.
+the demo itself is a rainbow: a 12mhz clock divider steps an 8-bit hue 25 times a second, a tiny 6-segment hsv->rgb block converts hue to rgb, and the rgb0/1/2 open-drain pins (39/40/41) drive the common-anode led active-low. full lap every 10 seconds. doing the color conversion in fabric means the animation costs the cpu exactly nothing - there isn't even a cpu.
 
-set up the icestorm flow in firmware/ - yosys -> nextpnr-ice40 -> icepack -> iceprog behind a makefile. yosys synths clean, timing passes at 12mhz (the design is good for ~62mhz, so lots of headroom), and the rgb pins land exactly where the pcf says they should. bitstream is 104kb, fits the w25q128 with room for a bootloader later.
+set up the icestorm flow under firmware/: yosys -> nextpnr-ice40 -> icepack -> iceprog behind a makefile. yosys synthed clean, timing closes at 12mhz easily (design is good to ~62mhz, so headroom everywhere), and the rgb pins landed exactly where the pcf file claimed they would. bitstream is 104kb, fits the w25q128 with room for a bootloader later.
 ![rainbow](images/firmware.png)
 
 **Total time spent: 2 hours**
 
 # August 8: production files and fab order
 
-prepared for manufacturing. committed the fabrication-toolkit outputs - gerbers, drill, positions, ipc netlist, plus the bom and designators - under kicad/production/. promoted bom.csv to the repo root as the main bom file and added a cost column plus the pcb and stencil line items so the whole order lives in one place.
+prepared manufacturing outputs: committed the fabrication-toolkit dump - gerbers, drill, positions, ipc netlist, bom, designators - under kicad/production/. promoted bom.csv to repo root as the canonical bill and added cost columns plus pcb/stencil line items so the whole order lives in one place.
 
-placed the order: purple solder mask, 1.6mm board, lead-free hasl, 100x150mm panel with no framework. the board itself is 50x70mm with rounded corners so it fits the tier comfortably. stencil for the top side only - the only through-hole parts are the headers and the usb-c, everything else is smd and the stencil is for the 0402s and the qfn-48. pcb is $20, stencil is $18.
+placed the order: purple mask, 1.6mm, lead-free hasl, 100x150mm panel no framework. board is 50x70 with rounded corners. stencil top-side only - through-hole is just headers and the usb-c shell, everything the stencil exists for (0402s, the qfn-48) is on top. $20 for boards, $18 stencil.
 ![board render](images/board-render.png)
 
 **Total time spent: 1 hour**
 
 # August 8: schematic review - external feedback
 
-sent the schematics out for review and got back a solid list from the forge keeper. most of the feedback was targeted and actionable:
+sent schematics out for review and got back a solid list from the forge keeper. the good kind of feedback - specific, actionable, none of it vague vibes:
 
-- r3/r4 (usb data line resistors): originally 5.1k, reviewer said they should be removed entirely since the ft232h drives the lines directly. changed them to 22r instead of removing - keeps some current limiting without fighting the driver. a compromise.
-- 100nf caps missing on usblc6 vbus (c37) and 93lc56bt vcc (c38): added both. the eeprom especially would benefit from the local decoupling, and it was just an oversight.
-- pullups on flash cs and sclk lines (r23/r24): added 10k pulls to vcc_io so the w25q128 doesn't see glitched commands during fpga power-up. good catch - floating cs on a spi flash is a recipe for spurious writes.
-- delay on fpga power sequencing: reviewer flagged the lack of sequencing between vcc (1.2v core) and vcc_io (3.3v). the tlv757s have fast rise times so in practice it should be fine, but noted as optional improvement for production.
+- r3/r4 (usb data line resistors): originally 5.1k, reviewer said remove entirely since the ft232h drives the lines directly. i compromised at 22r instead - keeps some current limiting without fighting the driver. defensible either way, and it's my board.
+- missing 100nf caps on usblc6 vbus (c37) and 93lc56bt vcc (c38): added both. the eeprom especially wanted local decoupling. plain oversight on my part.
+- pullups on flash cs and sclk (r23/r24): 10k pulls to vcc_io so the w25q128 never sees garbage commands while the fpga powers up. this one stung because i'd been staring at that exact corner - floating cs on a spi flash during power ramp is how you get spurious writes and a mysteriously corrupted boot image months later. good catch.
+- power sequencing delay between vcc (1.2v core) and vcc_io (3.3v): flagged as absent. the tlv757s rise fast enough that practice should be fine, but it's a real consideration and noted for a production revision.
 
-none of these are board-breaking - theyre the kind of stuff that separates a dev board from a product board. will fold the rc sequencing into the next revision if this goes to production.
+none of it breaks the board. it's exactly the gap between "dev board" and "product board", and now i know where the seams are. rc sequencing folds into rev b if this ever earns one.
 
-also updated the bom to include moq-aware pricing. turns out the flash chip (w25q128jvs) has an moq of 12 on lcsc, so even though the board only needs one, you have to buy a reel of 12. same story for the 5.1k and 10k resistors at moq 100. the total component cost per board comes to about $65.65 at moq-adjusted pricing, or $103.65 with the pcb and stencil.
-![editor] (images/pcb-editor.png)
+also updated the bom for moq reality: the flash alone has moq 12 on lcsc (buy a reel, use one), same story for resistors at moq 100. component cost lands around $65.65 per board at moq-adjusted pricing, $103.65 once pcb and stencil join in.
+![editor](images/pcb-editor.png)
 
 **Total time spent: 3 hours**

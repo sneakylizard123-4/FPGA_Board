@@ -3385,6 +3385,26 @@
 		)
 		(uuid "fd133ae8-bd5d-44f4-970f-aab15c9da978")
 	)
+	(label "3.3V"
+		(at 120.65 41.91 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "30bb3919-9402-4b30-a6e2-b9b4b31e773a")
+	)
+	(label "3.3V"
+		(at 138.43 140.97 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5a9fbeba-8330-41b3-98ab-4bcec5e767b1")
+	)
 	(global_label "VPLL"
 		(shape input)
 		(at 90.17 52.07 90)
