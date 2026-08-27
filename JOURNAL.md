@@ -130,3 +130,16 @@ also updated the bom for moq reality: the flash alone has moq 12 on lcsc (buy a 
 ![editor](images/pcb-editor.png)
 
 **Total time spent: 3 hours**
+
+# August 25: through-hole vias out of pads
+
+the fpga (qfn-48) has a huge exposed pad - center pad plus the ground pins under the package.
+![current pcb](images/current-board.png)
+ routing ground up from those pins used to mean vias right in the pads, which is a manufacturing headache: via-in-pad needs plating and filling, and even then it's the first thing that lifts during reflow. on a 2-layer board it was forcing me to tunnel everything through the fanout directly under the die.
+
+swapped the footprint for one with a smaller exposed pad so there's actually room to route traces between the pad and the package pins. still the same ice40up5k, same qfn-48, but now vias land on the ring around the ep instead of buried in the pad itself. ground stitching comes up through the peripheral pad ring where it's clean, and the core gets its connection through the smaller ep straight to the plane.
+
+it's one of those layout changes that doesn't show in the schematic at all - same net, same component - but makes the difference between a board that's mostly a ground-return mess and one that actually routes. via-in-pad is a fine technique when you have a multilayer budget and it's the only option; on a 2-layer hobby board it's a smell.
+
+**Total time spent: 2 hours**
+
