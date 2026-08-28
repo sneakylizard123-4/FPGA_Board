@@ -133,13 +133,12 @@ also updated the bom for moq reality: the flash alone has moq 12 on lcsc (buy a 
 
 # August 25: through-hole vias out of pads
 
-the fpga (qfn-48) has a huge exposed pad - center pad plus the ground pins under the package.
-![current pcb](images/current-board.png)
- routing ground up from those pins used to mean vias right in the pads, which is a manufacturing headache: via-in-pad needs plating and filling, and even then it's the first thing that lifts during reflow. on a 4-layer board it was forcing me to tunnel everything through the fanout directly under the die.
+the fpga's a qfn-48 with this massive exposed pad, and every ground pin underneath the package. i'd been dropping vias straight through the pads to get ground up to the plane, which works fine on paper but is a reflow nightmare - via-in-pad has to be filled or it just wicks solder and lifts, and i don't want to babysit that. plus it was choking the fanout: all those vias under the die left no room to route anything else through there.
 
-swapped the footprint for one with a smaller exposed pad so there's actually room to route traces between the pad and the package pins. still the same ice40up5k, same qfn-48, but now vias land on the ring around the ep instead of buried in the pad itself. ground stitching comes up through the peripheral pad ring where it's clean, and the core gets its connection through the smaller ep straight to the plane.
+so i swapped to a footprint with a smaller exposed pad, 5.6x5.6 down to 3.5x3.5. same fpga, same qfn-48, but now the vias sit on the ring around the pad instead of inside it, and there's actual space to run traces between the pad and the pins. ground stitching comes up around the edges and the core still lands on the plane through the smaller ep. nearly all the vias are out of pads now.
+![pcb editor](images/pcb-editor.png)
 
-it's one of those layout changes that doesn't show in the schematic at all - same net, same component - but makes the difference between a board that's mostly a ground-return mess and one that actually routes. via-in-pad is a fine technique when you have a multilayer budget and it's the only option; on a 4-layer hobby board it's probably unnecessary.
+it's the sort of change that's invisible in the schematic - same net, same part - but it's the difference between a fanout that fights you the whole way and one that just works. via-in-pad is fine when you have no other option, but here it was purely making my board more expensive.
 
-**Total time spent: 2 hours**
+**Total time spent: 4 hours**
 

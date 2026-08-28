@@ -76,9 +76,9 @@ See the notes on `tinyfpga.kicad_sch` for the exact strap changes.
 
 ## PCB Design
 
-The PCB is a 2-layer, 1.6mm board measuring approximately 50×70mm with rounded corners.
+The PCB is a 4-layer, 1.6mm board measuring approximately 50×70mm with rounded corners.
 
-- 2 copper layers: F.Cu / B.Cu
+- 4 copper layers: F.Cu / In1.Cu / In2.Cu / B.Cu
 - Standard 0.2mm track / 0.5mm via rules, 2.54mm header pitch
 - QFN-48 FPGA with exposed pad, decoupling kept close to the power pins
 - USB differential pair and oscillator traces kept short and direct
