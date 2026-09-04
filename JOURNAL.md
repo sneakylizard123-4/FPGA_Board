@@ -60,7 +60,7 @@ the si/so lines also branch toward the config sheet, because in bootloader mode 
 
 **Total time spent: 5 hours**
 
-# August 8: schematic - clock, flasher, headers
+# August 9: schematic - clock, flasher, headers
 
 clock sheet is deliberately boring: a 12mhz sg-210stf oscillator through a 74auc2g240 buffer into the fpga, with a copy sent to the ft232h so the bridge has its own reference too. picked 12mhz because the whole icestorm ecosystem assumes it and it divides down to whatever the design actually needs.
 ![clock](images/schematic/05-clock.png)
@@ -75,7 +75,7 @@ headers sheet: two 2x24 connectors breaking out the io. the ice40 has all these 
 
 **Total time spent: 6 hours**
 
-# August 8: schematic review
+# August 10: schematic review
 
 full pass over every sheet, then erc. caught a couple of net-name mismatches between the fpga and config sheets (same physical signal, two different labels - classic hierarchical sheet disease) plus a dangling label on the flasher. fixed, erc clean.
 
@@ -84,7 +84,7 @@ also noticed the r16/r17/r18 strap designators exist twice: once on the config s
 
 **Total time spent: 2 hours**
 
-# August 8: pcb start
+# August 11: pcb start
 
 imported the netlist and set up the board: 4-layer, 50x70mm, rounded corners. went back and forth on layer count first - two would be cheaper, but then every return path fights over one ground plane, and this board has an fpga, an ft232h, and three rails sharing tight space. four layers buy quiet reference planes and actual routing channels for a few dollars more.
 
@@ -95,7 +95,7 @@ started fanout. the thing i'm watching from here on: keeping spi short and the 1
 
 **Total time spent: 3 hours**
 
-# August 8: firmware - rainbow proof of life
+# August 12: firmware - rainbow proof of life
 
 wrote the first bitstream before finishing the layout, on purpose - i wanted proof the pin mapping in my head matched the pin mapping in the schematic before the board goes to fab and freezes it. pulled the exact netlist out with kicad-cli instead of trusting library symbols, which immediately earned its keep: turns out the green led (d2) hangs off cdone as a config indicator (not a user gpio), and the 12mhz clock lands on iob_25b_g3, package pin 20. either assumption wrong = bricked-looking board.
 
@@ -106,7 +106,7 @@ set up the icestorm flow under firmware/: yosys -> nextpnr-ice40 -> icepack -> i
 
 **Total time spent: 2 hours**
 
-# August 8: production files and fab order
+# August 13: production files and fab order
 
 prepared manufacturing outputs: committed the fabrication-toolkit dump - gerbers, drill, positions, ipc netlist, bom, designators - under kicad/production/. promoted bom.csv to repo root as the canonical bill and added cost columns plus pcb/stencil line items so the whole order lives in one place.
 
@@ -115,7 +115,7 @@ placed the order: purple mask, 1.6mm, lead-free hasl, 100x150mm panel no framewo
 
 **Total time spent: 1 hour**
 
-# August 8: schematic review - external feedback
+# August 13: schematic review - external feedback
 
 sent schematics out for review and got back a solid list from the forge keeper. the good kind of feedback - specific, actionable, none of it vague vibes:
 
