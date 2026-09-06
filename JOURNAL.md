@@ -135,9 +135,9 @@ also updated the bom for moq reality: the flash alone has moq 12 on lcsc (buy a 
 
 # August 25: through-hole vias out of pads
 
-the fpga's a qfn-48 with this massive exposed pad on the bottom, and every ground pin underneath the package. i'd been dropping vias straight through the pads to get ground up to the plane, which works fine on paper but is a reflow nightmare - via-in-pad has to be filled or it just wicks solder and lifts, and i don't want to babysit that. plus it was choking the fanout: all those vias under the die left no room to route anything else through there.
+the fpga's a qfn-48 with this huge exposed pad on the bottom, and every ground pin underneath the package. i'd been dropping vias straight through the pads to get ground up to the plane, which works fine on paper but is a reflow nightmare - via-in-pad has to be filled or it just wicks solder and lifts, and i don't want to babysit that. plus it was choking the fanout: all those vias under the die left no room to route anything else through there.
 
-so i swapped to a footprint with a smaller exposed pad, 5.6x5.6 down to 3.5x3.5. same fpga, same qfn-48, but now the vias sit on the ring around the pad instead of inside it, and there's actual space to run traces between the pad and the pins. ground stitching comes up around the edges and the core still lands on the plane through the smaller ep. nearly all the vias are out of pads now.
+so i swapped to a footprint with a smaller exposed pad, 5.6x5.6 down to 3.5x3.5 (thank you instagram reels). same fpga, same qfn-48, but now the vias sit on the ring around the pad instead of inside it, and there's actual space to run traces between the pad and the pins. ground stitching comes up around the edges and the core still lands on the plane through the smaller ep. nearly all the vias are out of pads now.
 ![pcb editor](images/pcb-editor.png)
 
 **Total time spent: 4 hours**
