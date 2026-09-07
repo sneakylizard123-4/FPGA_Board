@@ -1,6 +1,6 @@
 # FPGA_Board
 
-A 50x75mm USB-powered FPGA development board built around the **Lattice iCE40 UltraPlus**, with an on-board FT232H USB programmer, SPI flash memory, and two 2×24 pin I/O header.
+A 50x75mm USB-powered FPGA development board built around the **Lattice iCE40 UltraPlus**, with an on-board FT232H USB programmer, SPI flash memory, and two 2×24 pin I/O headers.
 
 ---
 
