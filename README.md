@@ -174,3 +174,7 @@ Order spec (JLCPCB):
 ---
 
 *KiCad project files live in [kicad/](kicad/).*
+
+## Credits 
+
+- Adafruit for neopixel gif

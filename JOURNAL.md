@@ -102,7 +102,7 @@ wrote the first bitstream before finishing the layout, on purpose - i wanted pro
 the demo itself is a rainbow: a 12mhz clock divider steps an 8-bit hue 25 times a second, a tiny 6-segment hsv->rgb block converts hue to rgb, and the rgb0/1/2 open-drain pins (39/40/41) drive the common-anode led active-low. full lap every 10 seconds. doing the color conversion in fabric means the animation costs the cpu exactly nothing - there isn't even a cpu.
 
 set up the icestorm flow under firmware/: yosys -> nextpnr-ice40 -> icepack -> iceprog behind a makefile. yosys synthed clean, timing closes at 12mhz easily (design is good to ~62mhz, so headroom everywhere), and the rgb pins landed exactly where the pcf file claimed they would. bitstream is 104kb, fits the w25q128 with room for a bootloader later.
-![rainbow](images/firmware.png)
+![rainbow](images/4776-00.mp4)
 
 **Total time spent: 2 hours**
 
