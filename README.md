@@ -1,183 +1,69 @@
 # FPGA_Board
 
-## NOTE TO REVIEWER!!!
-iv rewritten this thing multiple times
+A iCE40 FPGA devboard
 
-A 50x75mm USB-powered FPGA development board built around the **Lattice iCE40 UltraPlus**, with an on-board FT232H USB programmer, SPI flash memory, and two 2×24 pin I/O headers.
-
----
-
-## Key Features
-
-- **FPGA** - Lattice iCE40 UltraPlus `ICE40UP5K-SG48ITR` (QFN-48, 7×7mm)
-- **USB programmer** - FT232H (LQFP-48) 
-- **SPI flash** - W25Q128JVS 16MB boot memory (SOIC-8)
-- **USB-C** - USB 2.0 receptacle with USBLC6-2SC6 ESD protection
-- **Power** - 5V USB input, TLV757 LDOs for 1.2V / 2.5V / 3.3V, and 74AUC2G240 level translators
-- **Clocking** - 12MHz oscillator
-- **I/O** - 2×24 (2.54mm) pin header breakout of IOB/IOT pins, RGB + green status LEDs, reset button
-- **Boot modes** - SPI flash master mode, or TinyFPGA bootloader mode via strap resistors
-- **4-layer, 50×70mm PCB** with rounded corners and m3 mounting holes
-
----
-
-## Why I made it
-
-The iCE40 UltraPlus packs a serious amount of logic into a tiny QFN-48 package, and the open-source Yosys/nextpnr/iceStorm toolchain makes it a great FPGA to build around. I wanted a small, self-contained board that could be programmed over USB without extra hardware — so it carries its own FT232H-based flasher and SPI flash for configuration, and exposes the FPGA's I/O on standard 2.54mm headers.
-
----
-
-## Power Architecture
-
-```
-USB VBUS (5V)
-    │
-    ├── FB3 (ferrite) ───► 5V rail
-    │                        │
-    │                        ├── TLV75712 ───► 1.2V (FPGA core VCC)
-    │                        │
-    │                        ├── TLV75725 ───► 2.5V (VPP / VCCIO)
-    │                        │
-    │                        └── TLV75733 ───► 3.3V (VCCIO, FT232H, flash, sensors)
-    │
-    └── USBLC6-2SC6 ESD protection
-```
-
-All three LDOs are fed from the USB 5V rail. buffers translate between the 3.3V and 1.2V domains on the FPGA control/clock paths.
-
----
-
-## Schematic Organization
-
-The design is split into hierarchical KiCad schematic sheets:
-
-| Sheet    | File                    | Description                                    | Main Components                          |
-| -------- | ----------------------- | ---------------------------------------------- | ---------------------------------------- |
-| Root     | FPGA_Board.kicad_sch    | Hierarchical connections and system overview   | Main sheet                               |
-| USB      | usb.kicad_sch           | USB-C input                                    | USB-C receptacle, USBLC6, CC resistors   |
-| Power    | power.kicad_sch         | Power regulation                               | TLV75712/25/33                           |
-| FPGA     | fpga.kicad_sch          | Main FPGA, flash, LEDs, reset                  | ICE40UP5K, W25Q128, RGB LED, status LED  |
-| Clock    | clock.kicad_sch         | System clock                                   | SG-210STF 12MHz, 74AUC2G240              |
-| Config   | config.kicad_sch        | Boot-mode selection straps                     | R16–R18 0Ω resistors                     |
-| Flasher  | flasher.kicad_sch       | USB programming bridge                         | FT232H, 93LC56BT, test points            |
-| Headers  | headers.kicad_sch       | I/O breakout headers                           | 2×24 pin headers                         |
-
----
-
-## Boot Modes
-
-Configuration source is selected with 0-ohm strap resistors (see `config.kicad_sch`):
-
-- **SPI flash (default):** the FPGA boots directly from the on-board W25Q128 SPI flash.
-- **TinyFPGA BX mode:** for USB-uploaded bitstreams. Requires the flash to hold the TinyFPGA bootloader; the FT232H is switched onto the FPGA's SPI pins by moving the strap resistors.
-
-See the notes on `tinyfpga.kicad_sch` for the exact strap changes.
-
----
+## Custom Features
+- ICE40UP5K-SG48ITR FPGA (5280 LUTs, QFN-48)
+- On-board FT232H flasher with EEPROM
+- 16MB W25Q128JVS SPI flash
+- USB-C with ESD protection
+- RGB LED, green config-status LED, reset button
+- 12MHz oscillator, 4-layer PCB
 
 ## PCB Design
 
-- 4 copper layers
-- Standard 0.2mm track / 0.5mm via rules, 2.54mm header pitch
-- QFN-48 FPGA with exposed pad, decoupling kept close to the power pins
-- USB differential pair and oscillator traces kept short and direct
+The board is a 4-layer PCB.
 
----
+![PCB 3D / layout image](images/pcb-render.png)
 
-## Bill of Materials
+It is built around the Lattice iCE40 FPGA, designed to be programmed over USB through the on-board FT232H. The SPI flash boots the bitstream on power-up.
+It is fully supported by the open-source yosys/nextpnr/icestorm flow.
 
-| Ref       | Part               | Qty | Package   | Description                         |
-| --------- | ------------------ | --- | --------- | ----------------------------------- |
-| U6        | ICE40UP5K-SG48ITR  | 1   | QFN-48    | iCE40 UltraPlus FPGA, 5280 LUTs     |
-| U1        | FT232H             | 1   | LQFP-48   | USB-to-SPI/JTAG flasher             |
-| U9        | 93LC56BT-I/OT      | 1   | SOIC-8    | FT232H config EEPROM                |
-| U7        | W25Q128JVS         | 1   | SOIC-8    | 16MB SPI boot flash                 |
-| U2        | USBLC6-2SC6        | 1   | SOT-23-6  | USB ESD protection                  |
-| U3        | TLV75712PDBV       | 1   | SOT-23-5  | 1.2V LDO (FPGA core)                |
-| U4        | TLV75725PDBV       | 1   | SOT-23-5  | 2.5V LDO                            |
-| U5        | TLV75733PDBV       | 1   | SOT-23-5  | 3.3V LDO                            |
-| U8        | 74AUC2G240         | 2   | —         | Dual level translator / clock buffer|
-| Y2        | SG-210STF 12MHz    | 1   | 2.5×2.0mm | System oscillator                   |
-| J1        | USB-C receptacle   | 1   | USB 2.0   | Power and programming input         |
-| J3        | 2×24 pin header    | 1   | 2.54mm    | I/O breakout                        |
-| SW1       | Push button        | 1   | —         | FPGA reset                          |
-| D1        | Green LED          | 1   | 0603      | Status LED                          |
-| D2        | LED_ARGB           | 1   | —         | RGB status LED                      |
-| FB1–FB3   | BLM18HE152SN1D     | 3   | 0603      | Ferrite beads, power filtering      |
-| C1–C22 etc| 0.1uF              | 22  | 0603      | Decoupling                          |
-| C3–C34    | 10uF               | 12  | 0603      | Bulk decoupling                     |
-| R1–R4     | 5.1k               | 4   | 0603      | USB-C CC pull-downs                 |
-| R5,R8,R9,R11–R13 | 10k         | 6   | 0603      | Pull-ups                            |
-| R7        | 1k                 | 1   | 0603      | LED / bias                          |
-| R14       | 2.2k               | 1   | 0603      | FT232H                              |
-| R15       | 12k                | 1   | 0603      | FT232H                              |
-| R16–R21   | 0Ω                 | 7   | 0603      | Boot-mode straps                    |
-| R22       | 100Ω               | 1   | 0603      | Series resistor                     |
-| TP1–TP12  | Test points        | 12  | 1.0×1.0mm | Probe points                        |
+## Firmware
 
----
+As the board uses an iCE40 UltraPlus, it is programmed with yosys + nextpnr-ice40 + icepack + iceprog/icestorm.
 
-## Toolchain
+## BOM
 
-The iCE40 family uses the open-source FPGA flow:
+| Ref | Value | LCSC # | MPN | Manufacturer | Footprint | Qty | Unit $ | Ext $ | Link |
+|-----|-------|--------|-----|--------------|-----------|-----|--------|-------|------|
+| C1,C2,C3,C4,C5,C12,C13,C14,C17,C24,C34,C35 | 10uF 0402 | C307415 | - | - | 0402 | 12 | 0.1900 | 2.28 | [LCSC](https://www.lcsc.com/product-detail/C307415.html) |
+| C6,C7,C8,C9,C10,C11,C15,C16,C18,C19,C20,C21,C22,C23,C25,C26,C27,C28,C29,C30,C31,C32,C33,C37,C38 | 100nF 0402 | C131394 | - | - | 0402 | 25 | 0.0096 | 0.24 | [LCSC](https://www.lcsc.com/product-detail/C131394.html) |
+| C36 | 4.7uF 0402 | C21120 | - | - | 0402 | 1 | 0.0200 | 0.02 | [LCSC](https://www.lcsc.com/product-detail/C21120.html) |
+| D1 | LED_ARGB PLCC4 | C2786 | - | - | LED_Cree-PLCC4_2x2mm_CW | 1 | 0.1300 | 0.13 | [LCSC](https://www.lcsc.com/product-detail/C2786.html) |
+| D2 | Green LED 0402 | C2286 | - | - | 0402 | 1 | 0.0100 | 0.01 | [LCSC](https://www.lcsc.com/product-detail/C2286.html) |
+| FB1,FB2,FB3 | Ferrite Bead 1.5k | C82155 | BLM18HE152SN1D | muRata | 0603 | 3 | 0.0300 | 0.09 | [LCSC](https://www.lcsc.com/product-detail/C82155.html) |
+| J1 | USB-C Receptacle 14P | C165948 | TYPE-C-31-M-12 | Korean Hroparts Elec | USB-C | 1 | 0.1900 | 0.19 | [LCSC](https://www.lcsc.com/product-detail/C165948.html) |
+| J3,J4 | Pin Header 2x12 2.54mm | C492423 | PZ254V-12-12P | XFCN | Through Hole | 2 | 0.0700 | 0.14 | [LCSC](https://www.lcsc.com/product-detail/C492423.html) |
+| R1,R2 | 5.1k 1% 0402 | C25905 | 0402WGF5101TCE | UNI-ROYAL | 0402 | 2 | 0.0040 | 0.01 | [LCSC](https://www.lcsc.com/product-detail/C25905.html) |
+| R3,R4 | 22R 1% 0402 | C23200 | - | - | 0402 | 2 | 0.0040 | 0.01 | [LCSC](https://www.lcsc.com/product-detail/C23200.html) |
+| R5,R6,R10,R11,R19,R20,R21,R23,R24 | 10k 1% 0402 | C25904 | - | - | 0402 | 9 | 0.0040 | 0.04 | [LCSC](https://www.lcsc.com/product-detail/C25904.html) |
+| R7 | 1k 1% 0402 | C25898 | - | - | 0402 | 1 | 0.0040 | 0.00 | [LCSC](https://www.lcsc.com/product-detail/C25898.html) |
+| R8,R9,R14 | 0R 0402 | C25887 | - | - | 0402 | 3 | 0.0030 | 0.01 | [LCSC](https://www.lcsc.com/product-detail/C25887.html) |
+| R12 | 100R 1% 0402 | C22861 | - | - | 0402 | 1 | 0.0040 | 0.00 | [LCSC](https://www.lcsc.com/product-detail/C22861.html) |
+| R18 | 12k 1% 0402 | C25913 | - | - | 0402 | 1 | 0.0040 | 0.00 | [LCSC](https://www.lcsc.com/product-detail/C25913.html) |
+| R22 | 2.2k 1% 0402 | C25901 | - | - | 0402 | 1 | 0.0040 | 0.00 | [LCSC](https://www.lcsc.com/product-detail/C25901.html) |
+| SW1 | Tactile Switch EVQPUD | C158289 | EVQPUM | PANASONIC | SMD | 1 | 0.2000 | 0.20 | [LCSC](https://www.lcsc.com/product-detail/C158289.html) |
+| U1 | USBLC6-2SC6 | C7519 | USBLC6-2SC6 | ST | SOT-23-6 | 1 | 0.1800 | 0.18 | [LCSC](https://www.lcsc.com/product-detail/C7519.html) |
+| U2 | TLV75712PDBV | C485515 | TLV75712PDBVR | TI | SOT-23-5 | 1 | 0.1800 | 0.18 | [LCSC](https://www.lcsc.com/product-detail/C485515.html) |
+| U3 | TLV75725PDBV | C485516 | TLV75725PDBVR | TI | SOT-23-5 | 1 | 0.1800 | 0.18 | [LCSC](https://www.lcsc.com/product-detail/C485516.html) |
+| U4 | TLV75733PDBV | C485517 | TLV75733PDBVR | TI | SOT-23-5 | 1 | 0.1800 | 0.18 | [LCSC](https://www.lcsc.com/product-detail/C485517.html) |
+| U5 | 74AUC2G240 | C2652105 | - | - | VSSOP-8 | 1 | 0.7200 | 0.72 | [LCSC](https://www.lcsc.com/product-detail/C2652105.html) |
+| U6 | ICE40UP5K-SG48ITR | C2678152 | ICE40UP5K-SG48ITR | Lattice | QFN-48 | 1 | 8.5600 | 8.56 | [LCSC](https://www.lcsc.com/product-detail/C2678152.html) |
+| U7 | W25Q128JVS | C113767 | W25Q128JVS | Winbond | SOIC-8 | 1 | 2.5200 | 2.52 | [LCSC](https://www.lcsc.com/product-detail/C113767.html) |
+| U8 | FT232H | C51997 | FT232HL | FTDI | LQFP-48 | 1 | 10.6200 | 10.62 | [LCSC](https://www.lcsc.com/product-detail/C51997.html) |
+| U9 | 93LC56BT-I/OT | C190271 | 93LC56BT-I/OT | Microchip | SOIC-8 | 1 | 0.4500 | 0.45 | [LCSC](https://www.lcsc.com/product-detail/C190271.html) |
+| Y1 | SG-210STF 12MHz | C17426037 | SG-210STF | Seiko Epson | 2.5x2.0mm | 1 | 0.3700 | 0.37 | [LCSC](https://www.lcsc.com/product-detail/C17426037.html) |
+| PCB | Bare PCB | — | — | — | 50x70mm | 1 | 20.0000 | 20.00 | — |
+| STENCIL | Top stencil | — | — | — | 100x150mm | 1 | 18.0000 | 18.00 | — |
+| **Total** | — | — | — | — | — | **79** | — | **65.33** | — |
 
-- Synthesis: [Yosys](https://github.com/YosysHQ/yosys)
-- Place & route: [nextpnr](https://github.com/YosysHQ/nextpnr)
-- Bitstream + programming: [Project IceStorm](https://github.com/YosysHQ/icestorm) (`iceprog`)
+Full CSVs: [LCSC BOM](BOM.csv)
+[KiCad generated BOM](kicad/production/bom.csv)
+[Pick and place](kicad/production/positions.csv)
 
----
+## Production
 
-## Images
-
-### PCB Layout
-
-![PCB editor](images/pcb-editor.png)
-
-### Schematic
-
-![Root](images/schematic/01-root.png)
-![USB](images/schematic/02-usb.png)
-![Power](images/schematic/03-power.png)
-![FPGA](images/schematic/04-fpga.png)
-![Clock](images/schematic/05-clock.png)
-![Config](images/schematic/06-config.png)
-![Flasher](images/schematic/07-flasher.png)
-![Headers](images/schematic/08-headers.png)
-
-### 3D Render
-
-![Board render](images/board-render.png)
-<video src="kicad/Renders/260808_111839/FPGA_Board.mp4" controls></video>
-
----
-
-## Fabrication
-
-Order spec (JLCPCB):
-
-| Item | Spec |
-|------|------|
-| Thickness | 1.6 mm |
-| Surface finish | Lead-free HASL |
-| Stencil | Top side, 100 × 150 mm no-framework |
-| Cost | PCB $20, stencil $18 |
-
-
----
-
-## Project Status
-
-- [x] System architecture
-- [x] Schematic design
-- [x] PCB layout
-- [x] Manufacturing files / DRC sign-off
-- [x] BOM sourcing
-- [ ] Board fab + bring-up
-
----
-
-*KiCad project files live in [kicad/](kicad/).*
-
-## Credits 
-
-- Adafruit for neopixel gif
+This board assumes JLCPCB's standard 4 layer
+- HASL Lead Free
+- 1.6mm thick board
