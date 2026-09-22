@@ -64,6 +64,7 @@ Full CSVs: [LCSC BOM](BOM.csv)
 
 ## Production
 
+Production files in [Prod Files](kicad/production/)
 This board assumes JLCPCB's standard 4 layer
 - HASL Lead Free
 - 1.6mm thick board
